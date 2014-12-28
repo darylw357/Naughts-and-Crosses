@@ -39,11 +39,21 @@ def PrintGrid():
 			print (Grid[Row][Col], end=" ")
 		print(" ")
 	
-	
+def PromptInt(Message): #Catches user errors when a non integer is entered. try is kind of like a virtual machine environment.
+	try: # tests what the user entered.
+		Number = int(input(Message)) #returns verified integer.
+		if Number not in range(1,4):
+			print ("Position must be between 1 - 3.")
+			return PromptInt(Message) #recursively asks the user for a valid input.
+		return Number
+	except: #executed when an error is detected.
+		print ("That's not a number.")
+		return PromptInt(Message) #recursively asks the user for a valid input.
+		
 def PromptPlayerMove():
 	print ("Make your move player.")
-	X = int(input("X"))-1
-	Y = int(input("Y"))-1
+	X = PromptInt("X")-1# -1 is used because the range is 0-2, however most users will interpret the board as being from 1-3.
+	Y = PromptInt("Y")-1
 	return X,Y
 	
 def HasPlayerWon(Symbol):
