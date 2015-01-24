@@ -38,7 +38,18 @@ def PrintGrid():
 		for Col in range(len(Grid)):
 			print (Grid[Row][Col], end=" ")
 		print(" ")
-	
+
+def ComputerOpponent():
+	print("Computer is making a move.")
+	for Row in range(len(Grid)):
+		for Col in range(len(Grid)):
+			Grid[X][Y] == Symbol
+			Players.append(Players.pop(0)) #removes first element from list and adds it to the end of the list. maybe use players.reverse.
+			if HasPlayerWon(Symbol):
+				return GameOverState
+	PrintGrid()
+		
+		
 def PromptInt(Message): #Catches user errors when a non integer is entered. try is kind of like a virtual machine environment.
 	try: # tests what the user entered.
 		Number = int(input(Message)) #returns verified integer.
@@ -70,8 +81,9 @@ def HasPlayerWon(Symbol):
 	return False	
 	
 def PlayerTurnState():  #functions
-	if Players[0] == "Computer":
-		pass
+	if Players[0] =="Computer":
+		ComputerOpponent()
+	
 	else:
 		CurrentPlayer, Symbol = Players[0] #which player is playing
 		X,Y = PromptPlayerMove()
