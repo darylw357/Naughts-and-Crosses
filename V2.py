@@ -39,14 +39,11 @@ def PrintGrid():
 			print (Grid[Row][Col], end=" ")
 		print(" ")
 
-def ComputerOpponent():
+def ComputerOpponent(Symbol):
 	print("Computer is making a move.")
 	for Row in range(len(Grid)):
 		for Col in range(len(Grid)):
-			Grid[X][Y] == Symbol
-			Players.append(Players.pop(0)) #removes first element from list and adds it to the end of the list. maybe use players.reverse.
-			if HasPlayerWon(Symbol):
-				return GameOverState
+			Grid[Row][Col] == Symbol
 	PrintGrid()
 		
 		
@@ -81,19 +78,18 @@ def HasPlayerWon(Symbol):
 	return False	
 	
 def PlayerTurnState():  #functions
-	if Players[0] =="Computer":
-		ComputerOpponent()
-	
+	CurrentPlayer, Symbol = Players[0] #which player is playing
+	if CurrentPlayer=="Computer":
+		ComputerOpponent(Symbol) #
 	else:
-		CurrentPlayer, Symbol = Players[0] #which player is playing
 		X,Y = PromptPlayerMove()
 		if not Grid[X][Y] == 0:
 			print ("That space is already occupied.")
-		else:
-			Grid[X][Y] = Symbol
-			Players.append(Players.pop(0)) #removes first element from list and adds it to the end of the list. maybe use players.reverse.
-			if HasPlayerWon(Symbol):
-				return GameOverState
+			return
+		Grid[X][Y] = Symbol
+		Players.append(Players.pop(0)) #removes first element from list and adds it to the end of the list. maybe use players.reverse.
+	if HasPlayerWon(Symbol):
+		return GameOverState
 	PrintGrid()
 	
 def GameOverState():
