@@ -1,7 +1,7 @@
 #2 Player  Noughts and Crosses Game
 import sys, random
 
-#Variable Declairation.
+#Variable Declaration.
 
 Players = [("Player1",1)] #First player in this list will be the player whose turn it is. if a players turn is over then they are removed and appended to the end.
 #Players is a list of tuples, first element name second element symbol to represent player choices.
@@ -65,12 +65,11 @@ def PromptPlayerMove():
 		
 def HasPlayerWon(Symbol):
 	global Moves
-	print (Moves)
 	for Row in range(3): #Execute this block of code for each row. Holds true output in PlayerWon.
 		PlayerWon = Grid[Row][0] == Symbol and Grid[Row][1] == Symbol and Grid[Row][2] == Symbol # Checks each horizontal, like a AND logic gate, returns true or false.
 		PlayerWon = PlayerWon or Grid[0][Row] == Symbol and Grid[1][Row] == Symbol and Grid[2][Row] == Symbol #Checks vertical.
 		if PlayerWon: 
-			return True
+			return Players[0]
 	PlayerWon = Grid[0][0] == Symbol and Grid[1][1] == Symbol and Grid[2][2] == Symbol #Diagonals.
 	PlayerWon = PlayerWon or Grid[0][2] == Symbol and Grid[1][1] == Symbol and Grid[2][0] == Symbol #Diagonals.
 	if PlayerWon: 
@@ -92,7 +91,6 @@ def PlayerTurnState():
 		Grid[X][Y] = Symbol
 	PrintGrid()
 	Moves += 1 
-	print (Moves)
 	WinningPlayer = HasPlayerWon(Symbol)
 	if not  WinningPlayer == False:
 		Players.insert(0,WinningPlayer)
